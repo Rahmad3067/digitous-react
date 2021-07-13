@@ -6,24 +6,6 @@ import './components/Counter.css'
 
 
 
-
-function addFunction(plus) {
-  this.setState(plus =>{
-    if (plus.count > 0) {
-      return  {count: plus.count-1}
-    }
-
-  })
-  
-
-}
-
-
-
-
-
-
-
 class App extends React.Component {
 
   constructor () {
