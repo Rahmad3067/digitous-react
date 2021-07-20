@@ -61,3 +61,10 @@ class App extends React.Component {
 }
 
 export default App;
+
+// othe solution
+// {user.map((user, i) =>{
+
+// })}
+
+

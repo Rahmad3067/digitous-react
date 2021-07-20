@@ -3,9 +3,6 @@ import './App.css';
 import Counter from './components/Counter';
 import './components/Counter.css'
 
-
-
-
 class App extends React.Component {
 
   constructor () {
@@ -26,7 +23,7 @@ class App extends React.Component {
   
   }
   subtractFunction=()=> {
-    if(this.state.count >0 ) {
+    if(this.state.count > 0 ) {
       this.setState({
         count: this.state.count-1
          
