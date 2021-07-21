@@ -19,43 +19,58 @@ class App extends React.Component {
     this.state = {
       water: 1.5,
       heart: 120,
-      temperature: -120,
+      temperature: -20,
       steps: 3000,
     }
   }
   onHeartChange=(e) => {
-    this.setState({heart: e.target.value})
-    this.calculateWater();
-  }
+    this.setState((prevState) => {
+      return this.calculateWater({
+        ...prevState,
+        heart: e.target.value,
+      })
+    });
+  };
+  
   onStepsChange=(e) => {
-    this.setState({steps: e.target.value})
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        steps: e.target.value,
+      }
+    });
     this.calculateWater();
   }
   onTemperatureChange=(e) => {
 
-    this.setState({temperature: e.target.value})
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        temperature: e.target.value,
+      }
+    });
     this.calculateWater();
 
   }
 
   calculateWater =()=> {
     let drinkWater = 1.5
-    let x = 0
-    let y = 0
-    let z = 0
+    let temp = 0
+    let heart = 0
+    let step = 0
     if (this.state.temperature > 20) {
       let multiplier = this.state.temperature - 20
-      x = multiplier*0.02
+      temp = multiplier*0.02
     }
     if (this.state.heart > 120) {
       let multiplier = this.state.heart - 120
-      y = multiplier*0.0008
+      heart = multiplier*0.0008
     }
     if (this.state.steps > 10000) {
       let multiplier = this.state.steps - 10000
-      z = multiplier*0.00002
+      step = multiplier*0.00002
     }
-    drinkWater = drinkWater + x + y + z
+    drinkWater = drinkWater + temp + heart + step
     this.setState((prevState) => {
       return {
         ...prevState,

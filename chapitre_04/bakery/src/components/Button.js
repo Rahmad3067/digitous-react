@@ -2,14 +2,14 @@ import React from 'react';
 class Button extends React.Component {
     render(){
         return(
-            <div>
-            <button
-            isSelected={this.props.isSelected}
+            
+            <button 
+             className={this.props.isSelected ? 'btn btn-primary' : 'btn'}
             onClick={this.props.onClick}
             >
             {this.props.children}
             </button>  
-            </div>
+            
         )
     }
 }

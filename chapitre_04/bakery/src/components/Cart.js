@@ -9,7 +9,7 @@ class Cart extends React.Component {
 
                 {this.props.items.map((item) =>(
                     <li>{item.name} {item.price}€</li>
-                ))}
+                )).sort((a, b)=> a - b ).reverse()}
                 </ul>
 
             </div>

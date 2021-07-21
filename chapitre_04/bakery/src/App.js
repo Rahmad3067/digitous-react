@@ -13,17 +13,24 @@ class App extends React.Component {
     super();
     this.state = {
       activeTab: "add",
-      items: []
+      items: [],
+      price: 0,
     }
   }
-  addItem=(name, price) => {
+
+
+
+
+
+  addItem=(item) => {
     let item2 = this.state.items
-    item2.push({name: 'xx', price: 'xx'})
+    item2.push(item)
     this.setState({items: item2 })
-    console.log(this.state.items)
   }
 
+  
 
+  
 
 
   selectAdd =()=> {
@@ -69,12 +76,18 @@ class App extends React.Component {
   }
   render () {
     return (
-      <div className="app">
+      <div className="container mt-5 ml-5">
+        <div className='mb-3'>
+
+        <Button isSelected={this.state.activeTab === 'add'} children="Add" onClick={this.selectAdd} />
+        <Button isSelected={this.state.activeTab === 'cart'} children="Cart" onClick={this.selectCart} />
+        <Button isSelected={this.state.activeTab === 'pay'} children="Pay" onClick={this.selectPay} />
+        </div>
         
-        <Button children="Add" onClick={this.selectAdd} />
-        <Button children="Cart" onClick={this.selectCart} />
-        <Button children="Pay" onClick={this.selectPay} />
+
         {this.renderTab()}
+        
+        
       </div>
       
       

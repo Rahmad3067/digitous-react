@@ -19,6 +19,7 @@ class Box extends React.Component {
 
 
         }
+        return null;
         
     }
     render () {
