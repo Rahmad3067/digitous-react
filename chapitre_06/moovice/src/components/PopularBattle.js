@@ -1,53 +1,45 @@
-import React, { Component } from 'react'
+import { useState, useEffect } from "react"
 import Card from './Card';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-class PopularBattle extends Component {
-    constructor (){
-        super()
-        this.state = {
-            movies: [],
-            currentBattle: 0,
-            favorites: [],
+ const PopularBattle = () => {
 
-        }
-    }
+    const [movies, setMovies] = useState([]);
+    const [currentBattle, setCurrentBattle] = useState(0);
+    const [favorites, setFavorites] = useState([]);
 
-    componentDidMount() {
+    useEffect(() => {
         fetch("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=a2ad7a0573c9cad03df7ada3dcefa35f")
-        .then((res) => res.json())
-        .then((data)=> {
-    
-          this.setState({
-            movies: data.results
+          .then((res) => res.json())
+          .then((data) => {
+              console.log(data)
+            setMovies(data);
+            // eslint-disable-next-line 
           })
-        });
-    }
+      }, []);
 
-    handleClick = ((id) => {
-        this.setState((prevState)=>{
-            return{
-                ...prevState,
-                currentBattle: prevState.currentBattle + 2,
-                favorites: [...prevState.favorites,id]
-            }
+      useEffect(() => {
+		console.log(movies);
+		console.log(favorites);
+	}, [movies, favorites]);
+
+    
+
+    const handleClick = ((id) => {
+           
+            setCurrentBattle(currentBattle + 2)
+            setFavorites(favorites,id)
+
         })
-    })
 
-
-
-
-    render() {
-        console.log(this.state.favorites)
+        console.log(favorites)
         return (
-            <div className='row'>
-                <div className="col">
+            console.log(setMovies)
                 <ul>
-                    
-                    {this.state.movies.slice(this.state.currentBattle, this.state.currentBattle+2).map((movie)=>{
+                    {movies.slice(currentBattle, setCurrentBattle).map((movie)=>{
                         const movieLink = "https://image.tmdb.org/t/p/w300/"
                         return <li>
-                            <Card onClick={() => this.handleClick(movie.id)} 
+                            <Card className='d-flex container' onClick={() => this.handleClick(movie.id)} 
                                 poster_path={movieLink + movie.poster_path}
                                 title={movie.title}
                                 release_date={movie.release_date}
@@ -57,13 +49,8 @@ class PopularBattle extends Component {
                     })}
                     
                 </ul>
-
-                </div>
-                
-            </div>
         )
-    }
-}
 
+}
 export default PopularBattle;
 
